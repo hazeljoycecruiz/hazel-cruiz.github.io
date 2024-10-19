@@ -9,7 +9,7 @@
   "use strict";
 
   /**
-   * Easy selector helper function
+   * Easy selector helper function - hero & about
    */
   const select = (el, all = false) => {
     el = el.trim()
@@ -21,7 +21,7 @@
   }
 
   /**
-   * Easy event listener function
+   * Easy event listener function - hero & about
    */
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all)
@@ -35,7 +35,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener -hero & about
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -112,7 +112,23 @@
 
   
   /**
-   * Scroll with ofset on page load with hash links in the url
+   * Scrool with ofset on links with a class name .scrollto - mobile
+   */
+  on('click', '.scrollto', function(e) {
+    if (select(this.hash)) {
+      e.preventDefault()
+      let navbar = select('#navbar')
+      if (navbar.classList.contains('navbar-mobile')) {
+        navbar.classList.remove('navbar-mobile')
+        let navbarToggle = select('.mobile-nav-toggle')
+        navbarToggle.classList.toggle('bi-list')
+        navbarToggle.classList.toggle('bi-x')
+      }
+      scrollto(this.hash)
+    }
+  }, true)
+  /**
+   * Scroll with ofset on page load with hash links in the url - mobile
    */
   window.addEventListener('load', () => {
     if (window.location.hash) {
